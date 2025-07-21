@@ -1,14 +1,17 @@
 # Billctl - Professional Billing Calculator
 
-A high-performance CLI tool for calculating billing amounts based on hours, days, weeks, and months. 
+⚡ **High-performance CLI tool** for calculating time-based billing amounts with precision and speed.
 
-## 🚀 Features
+## Why Billctl?
 
-- **Multiple Time Units**: Calculate billing for hours, days, weeks, and specific months
-- **Smart Month Handling**: Automatic leap year detection and accurate days per month
-- **Flexible Input**: Combine multiple time periods in a single calculation
-- **Performance Optimized**: Go version is 70% faster than the original bash implementation
-- **Cross-Platform**: Works on macOS, Linux, and Windows
+🚀 **70% faster** than traditional bash implementations
+🎯 **Professional-grade** calculations for freelancers and contractors
+🌍 **Cross-platform** support (Linux, macOS, Windows)
+🧠 **Smart features** like automatic leap year detection
+⚙️ **Modern Go implementation** with comprehensive testing
+📊 **Flexible time units** - hours, days, weeks, and specific months
+
+Perfect for developers, freelancers, contractors, and consultants who need accurate time-based billing calculations.
 
 ## 📦 Installation
 
@@ -179,11 +182,11 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch  
+2. Create a feature branch
 3. Add tests for new functionality
 4. Submit a pull request
 
 ---
 
-**Author**: [DevelPudu](https://github.com/develpudu)  
+**Author**: [DevelPudu](https://github.com/develpudu)
 **License**: MIT
