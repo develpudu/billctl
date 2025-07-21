@@ -395,7 +395,7 @@ func TestCalculatorFormatRates(t *testing.T) {
 
 	// Check that output contains expected elements
 	expectedSubstrings := []string{
-		"=== TABLA DE TARIFAS FIMAL ===",
+		"=== TABLA DE TARIFAS ===",
 		"Configuración base:",
 		"Salario mensual: EUR 2200.00",
 		"Horas semanales: 40",

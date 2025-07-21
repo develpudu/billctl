@@ -17,7 +17,7 @@ WHITE='\033[1;37m'
 NC='\033[0m' # No Color
 
 # Configuration
-FACTURATOR_GO="../billctl"
+BILLCTL="../billctl"
 FACTURATOR_BASH="../calcular_facturacion.sh"
 PAUSE_BETWEEN_EXAMPLES=2
 
@@ -49,8 +49,8 @@ run_command() {
         return
     fi
 
-    if [[ $cmd == *"billctl"* ]] && [[ ! -f "$FACTURATOR_GO" ]]; then
-        echo -e "${RED}Go binary not found at $FACTURATOR_GO${NC}"
+    if [[ $cmd == *"billctl"* ]] && [[ ! -f "$BILLCTL" ]]; then
+        echo -e "${RED}Go binary not found at $BILLCTL${NC}"
         echo -e "${YELLOW}Run 'make build' or 'go build' first${NC}"
         return
     fi
@@ -66,11 +66,11 @@ check_prerequisites() {
     echo -e "${BLUE}Checking prerequisites...${NC}"
 
     # Check for Go binary
-    if [[ ! -f "$FACTURATOR_GO" ]]; then
+    if [[ ! -f "$BILLCTL" ]]; then
         echo -e "${YELLOW}Go binary not found. Attempting to build...${NC}"
         if command -v go &> /dev/null; then
             (cd .. && go build -o billctl)
-            if [[ -f "$FACTURATOR_GO" ]]; then
+            if [[ -f "$BILLCTL" ]]; then
                 echo -e "${GREEN}Successfully built Go binary${NC}"
             else
                 echo -e "${RED}Failed to build Go binary${NC}"
@@ -98,70 +98,70 @@ check_prerequisites() {
 basic_examples() {
     print_header "BASIC USAGE EXAMPLES"
 
-    run_command "$FACTURATOR_GO -h 40" "Calculate 40 hours of work"
-    run_command "$FACTURATOR_GO -d 10" "Calculate 10 days of work"
-    run_command "$FACTURATOR_GO -s 3" "Calculate 3 weeks of work"
-    run_command "$FACTURATOR_GO -m 01" "Calculate January (current year)"
-    run_command "$FACTURATOR_GO -m 2024-02" "Calculate February 2024 (leap year)"
+    run_command "$BILLCTL -h 40" "Calculate 40 hours of work"
+    run_command "$BILLCTL -d 10" "Calculate 10 days of work"
+    run_command "$BILLCTL -s 3" "Calculate 3 weeks of work"
+    run_command "$BILLCTL -m 01" "Calculate January (current year)"
+    run_command "$BILLCTL -m 2024-02" "Calculate February 2024 (leap year)"
 }
 
 monthly_examples() {
     print_header "MONTHLY CALCULATIONS"
 
-    run_command "$FACTURATOR_GO -m 2024-01" "January 2024 (31 days)"
-    run_command "$FACTURATOR_GO -m 2024-02" "February 2024 (29 days - leap year)"
-    run_command "$FACTURATOR_GO -m 2023-02" "February 2023 (28 days - regular year)"
-    run_command "$FACTURATOR_GO -m 2024-04" "April 2024 (30 days)"
-    run_command "$FACTURATOR_GO -m 12" "December (current year)"
+    run_command "$BILLCTL -m 2024-01" "January 2024 (31 days)"
+    run_command "$BILLCTL -m 2024-02" "February 2024 (29 days - leap year)"
+    run_command "$BILLCTL -m 2023-02" "February 2023 (28 days - regular year)"
+    run_command "$BILLCTL -m 2024-04" "April 2024 (30 days)"
+    run_command "$BILLCTL -m 12" "December (current year)"
 }
 
 combination_examples() {
     print_header "COMBINATION CALCULATIONS"
 
-    run_command "$FACTURATOR_GO -m 01 -d 5" "January + 5 additional days"
-    run_command "$FACTURATOR_GO -s 2 -d 3 -h 4" "2 weeks + 3 days + 4 hours"
-    run_command "$FACTURATOR_GO -m 2024-01 -s 1" "January 2024 + 1 week extension"
-    run_command "$FACTURATOR_GO -m 01 -m 02 -m 03" "Q1: January + February + March"
-    run_command "$FACTURATOR_GO -m 2024-02 -s 2 -d 5 -h 10" "Complex: February + 2 weeks + 5 days + 10 hours"
+    run_command "$BILLCTL -m 01 -d 5" "January + 5 additional days"
+    run_command "$BILLCTL -s 2 -d 3 -h 4" "2 weeks + 3 days + 4 hours"
+    run_command "$BILLCTL -m 2024-01 -s 1" "January 2024 + 1 week extension"
+    run_command "$BILLCTL -m 01 -m 02 -m 03" "Q1: January + February + March"
+    run_command "$BILLCTL -m 2024-02 -s 2 -d 5 -h 10" "Complex: February + 2 weeks + 5 days + 10 hours"
 }
 
 currency_examples() {
     print_header "CURRENCY EXAMPLES"
 
-    run_command "$FACTURATOR_GO -d 15 --currency EUR" "15 days in Euros"
-    run_command "$FACTURATOR_GO -m 03 --currency USD" "March in US Dollars"
-    run_command "$FACTURATOR_GO -s 4 --currency ARS" "4 weeks in Argentine Pesos"
-    run_command "$FACTURATOR_GO --rates --currency EUR" "Rate table in Euros"
-    run_command "$FACTURATOR_GO -h 100 --currency GBP" "100 hours in British Pounds"
+    run_command "$BILLCTL -d 15 --currency EUR" "15 days in Euros"
+    run_command "$BILLCTL -m 03 --currency USD" "March in US Dollars"
+    run_command "$BILLCTL -s 4 --currency ARS" "4 weeks in Argentine Pesos"
+    run_command "$BILLCTL --rates --currency EUR" "Rate table in Euros"
+    run_command "$BILLCTL -h 100 --currency GBP" "100 hours in British Pounds"
 }
 
 real_world_scenarios() {
     print_header "REAL-WORLD SCENARIOS"
 
     print_subheader "Freelance Project Billing"
-    run_command "$FACTURATOR_GO -m 2024-01 -d 15 -h 20" "1.5 month project with extra work"
+    run_command "$BILLCTL -m 2024-01 -d 15 -h 20" "1.5 month project with extra work"
 
     print_subheader "Monthly Retainer Plus Extra"
-    run_command "$FACTURATOR_GO -m 04 -h 32" "April retainer + 32 additional hours"
+    run_command "$BILLCTL -m 04 -h 32" "April retainer + 32 additional hours"
 
     print_subheader "Contract Extension"
-    run_command "$FACTURATOR_GO -m 2024-01 -s 2" "January + 2-week extension"
+    run_command "$BILLCTL -m 2024-01 -s 2" "January + 2-week extension"
 
     print_subheader "Emergency/Rush Work"
-    run_command "$FACTURATOR_GO -h 16" "Weekend emergency work (16 hours)"
+    run_command "$BILLCTL -h 16" "Weekend emergency work (16 hours)"
 
     print_subheader "Partial Month Billing"
-    run_command "$FACTURATOR_GO -d 15" "First half of month"
-    run_command "$FACTURATOR_GO -s 1 -d 3" "One week + 3 days"
+    run_command "$BILLCTL -d 15" "First half of month"
+    run_command "$BILLCTL -s 1 -d 3" "One week + 3 days"
 
     print_subheader "Overtime Calculation"
-    run_command "$FACTURATOR_GO -m 01 -h 20" "Regular January + 20 hours overtime"
+    run_command "$BILLCTL -m 01 -h 20" "Regular January + 20 hours overtime"
 }
 
 comparison_examples() {
     print_header "BASH vs GO PERFORMANCE COMPARISON"
 
-    if [[ -f "$FACTURATOR_BASH" ]] && [[ -f "$FACTURATOR_GO" ]]; then
+    if [[ -f "$FACTURATOR_BASH" ]] && [[ -f "$BILLCTL" ]]; then
         echo -e "${CYAN}Running identical calculations with both versions...${NC}\n"
 
         # Simple calculation
@@ -169,7 +169,7 @@ comparison_examples() {
         echo -e "${YELLOW}Bash version:${NC}"
         time $FACTURATOR_BASH -d 15
         echo -e "\n${YELLOW}Go version:${NC}"
-        time $FACTURATOR_GO -d 15
+        time $BILLCTL -d 15
 
         sleep 1
 
@@ -178,7 +178,7 @@ comparison_examples() {
         echo -e "${YELLOW}Bash version:${NC}"
         time $FACTURATOR_BASH -m 01 -s 2 -d 5 -h 10
         echo -e "\n${YELLOW}Go version:${NC}"
-        time $FACTURATOR_GO -m 01 -s 2 -d 5 -h 10
+        time $BILLCTL -m 01 -s 2 -d 5 -h 10
 
         sleep 1
 
@@ -187,7 +187,7 @@ comparison_examples() {
         echo -e "${YELLOW}Bash version:${NC}"
         time $FACTURATOR_BASH --tarifas
         echo -e "\n${YELLOW}Go version:${NC}"
-        time $FACTURATOR_GO --rates
+        time $BILLCTL --rates
 
     else
         echo -e "${YELLOW}Comparison skipped - both versions not available${NC}"
@@ -199,35 +199,35 @@ error_examples() {
 
     echo -e "${CYAN}The following examples demonstrate error handling:${NC}\n"
 
-    print_example "Invalid month number" "$FACTURATOR_GO -m 13"
+    print_example "Invalid month number" "$BILLCTL -m 13"
     echo -e "${RED}Expected error:${NC}"
-    $FACTURATOR_GO -m 13 2>&1 || true
+    $BILLCTL -m 13 2>&1 || true
 
     echo ""
 
-    print_example "Invalid month format" "$FACTURATOR_GO -m january"
+    print_example "Invalid month format" "$BILLCTL -m january"
     echo -e "${RED}Expected error:${NC}"
-    $FACTURATOR_GO -m january 2>&1 || true
+    $BILLCTL -m january 2>&1 || true
 
     echo ""
 
-    print_example "Negative hours" "$FACTURATOR_GO -h -10"
+    print_example "Negative hours" "$BILLCTL -h -10"
     echo -e "${RED}Expected error:${NC}"
-    $FACTURATOR_GO -h -10 2>&1 || true
+    $BILLCTL -h -10 2>&1 || true
 
     echo ""
 
-    print_example "No arguments" "$FACTURATOR_GO"
+    print_example "No arguments" "$BILLCTL"
     echo -e "${YELLOW}Expected: Help message${NC}"
-    $FACTURATOR_GO 2>&1 || true
+    $BILLCTL 2>&1 || true
 }
 
 rate_table_examples() {
     print_header "RATE TABLE EXAMPLES"
 
-    run_command "$FACTURATOR_GO --rates" "Default rates (U\$S)"
-    run_command "$FACTURATOR_GO --rates --currency EUR" "Rates in Euros"
-    run_command "$FACTURATOR_GO --rates --currency USD" "Rates in US Dollars"
+    run_command "$BILLCTL --rates" "Default rates (U\$S)"
+    run_command "$BILLCTL --rates --currency EUR" "Rates in Euros"
+    run_command "$BILLCTL --rates --currency USD" "Rates in US Dollars"
 }
 
 automation_examples() {
@@ -239,7 +239,7 @@ automation_examples() {
 
     for month in 01 02 03; do
         echo -e "${YELLOW}Month $month:${NC}"
-        $FACTURATOR_GO -m 2024-$month --currency USD
+        $BILLCTL -m 2024-$month --currency USD
         echo ""
     done
 
@@ -252,7 +252,7 @@ automation_examples() {
         weeks=$(echo $pattern | cut -d: -f1)
         desc=$(echo $pattern | cut -d: -f2)
         echo -e "${YELLOW}$desc:${NC}"
-        $FACTURATOR_GO -s $weeks
+        $BILLCTL -s $weeks
         echo ""
     done
 }
@@ -262,22 +262,22 @@ performance_stress_test() {
 
     echo -e "${CYAN}Running performance tests with large calculations...${NC}\n"
 
-    if [[ -f "$FACTURATOR_GO" ]]; then
+    if [[ -f "$BILLCTL" ]]; then
         print_subheader "Large Hour Calculation"
         echo -e "${YELLOW}Calculating 10,000 hours:${NC}"
-        time $FACTURATOR_GO -h 10000
+        time $BILLCTL -h 10000
 
         echo ""
 
         print_subheader "Multiple Large Values"
         echo -e "${YELLOW}Complex large calculation:${NC}"
-        time $FACTURATOR_GO -h 1000 -d 500 -s 100
+        time $BILLCTL -h 1000 -d 500 -s 100
 
         echo ""
 
         print_subheader "Many Months"
         echo -e "${YELLOW}Full year calculation:${NC}"
-        time $FACTURATOR_GO -m 2024-01 -m 2024-02 -m 2024-03 -m 2024-04 -m 2024-05 -m 2024-06 -m 2024-07 -m 2024-08 -m 2024-09 -m 2024-10 -m 2024-11 -m 2024-12
+        time $BILLCTL -m 2024-01 -m 2024-02 -m 2024-03 -m 2024-04 -m 2024-05 -m 2024-06 -m 2024-07 -m 2024-08 -m 2024-09 -m 2024-10 -m 2024-11 -m 2024-12
     else
         echo -e "${RED}Go binary not available for performance testing${NC}"
     fi
@@ -382,7 +382,7 @@ run_all_examples() {
 
 show_help() {
     cat << EOF
-Facturator Examples Runner
+Billctl Examples Runner
 
 Usage: $0 [option]
 

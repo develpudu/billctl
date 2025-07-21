@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script para calcular facturación FIMAL
+# Script para calcular facturación
 # Autor: DevelPudu (https://github.com/develpudu)
 # Fecha: 2025-07-17
 
@@ -63,7 +63,7 @@ TARIFA_SEMANAL=$(echo "scale=2; $TARIFA_HORARIA * $HORAS_SEMANALES" | bc)
 
 # Función para mostrar ayuda
 mostrar_ayuda() {
-    echo "=== CALCULADORA DE FACTURACIÓN FIMAL ==="
+    echo "=== CALCULADORA DE FACTURACIÓN ==="
     echo ""
     echo "Uso: $0 [OPCIONES] [--moneda MONEDA]"
     echo ""
@@ -98,7 +98,7 @@ mostrar_ayuda() {
 
 # Función para mostrar tarifas
 mostrar_tarifas() {
-    echo "=== TABLA DE TARIFAS FIMAL ==="
+    echo "=== TABLA DE TARIFAS ==="
     echo ""
     echo "Configuración base:"
     echo "  Salario mensual: $MONEDA $SALARIO_MENSUAL"

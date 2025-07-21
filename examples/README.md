@@ -236,7 +236,7 @@ RESUMEN:
 ```bash
 $ ./billctl --rates --currency USD
 
-=== TABLA DE TARIFAS FIMAL ===
+=== TABLA DE TARIFAS ===
 
 Configuración base:
   Salario mensual: USD 2200.00

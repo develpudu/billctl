@@ -249,7 +249,7 @@ func (c *Calculator) FormatResult(result *CalculationResult) string {
 func (c *Calculator) FormatRates(currency string) string {
 	var output strings.Builder
 
-	output.WriteString("=== TABLA DE TARIFAS FIMAL ===\n\n")
+	output.WriteString("=== TABLA DE TARIFAS ===\n\n")
 	output.WriteString("Configuración base:\n")
 	output.WriteString(fmt.Sprintf("  Salario mensual: %s %.2f\n", currency, c.config.MonthlySalary))
 	output.WriteString(fmt.Sprintf("  Horas semanales: %d\n", c.config.WeeklyHours))

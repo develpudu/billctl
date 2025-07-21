@@ -1,4 +1,4 @@
-# Facturator - FIMAL Billing Calculator
+# Billctl - Billing Calculator
 # Makefile for build automation
 
 # Variables
@@ -38,7 +38,7 @@ all: deps test build
 
 # Help target
 help: ## Show this help message
-	@echo "$(BLUE)Facturator - FIMAL Billing Calculator$(NC)"
+	@echo "$(BLUE)Billctl - Billing Calculator$(NC)"
 	@echo "$(BLUE)Available targets:$(NC)"
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  $(GREEN)%-20s$(NC) %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
@@ -224,8 +224,8 @@ version: ## Show version information
 
 info: ## Show project information
 	@echo "$(BLUE)Project Information:$(NC)"
-	@echo "  Name: Facturator"
-	@echo "  Description: FIMAL Billing Calculator"
+	@echo "  Name: Billctl"
+	@echo "  Description: Billing Calculator"
 	@echo "  Version: $(VERSION)"
 	@echo "  Go Version: $(shell $(GOCMD) version | cut -d' ' -f3)"
 	@echo "  Build Directory: $(BUILD_DIR)"
