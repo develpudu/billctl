@@ -5,10 +5,15 @@
 ## Why Billctl?
 
 🚀 **70% faster** than traditional bash implementations
+
 🎯 **Professional-grade** calculations for freelancers and contractors
+
 🌍 **Cross-platform** support (Linux, macOS, Windows)
+
 🧠 **Smart features** like automatic leap year detection
+
 ⚙️ **Modern Go implementation** with comprehensive testing
+
 📊 **Flexible time units** - hours, days, weeks, and specific months
 
 Perfect for developers, freelancers, contractors, and consultants who need accurate time-based billing calculations.
