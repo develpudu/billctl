@@ -4,8 +4,8 @@
 *.dll
 *.so
 *.dylib
-facturator
-facturator-*
+billctl
+billctl-*
 
 # Test binary, built with `go test -c`
 *.test

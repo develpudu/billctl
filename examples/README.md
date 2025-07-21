@@ -1,6 +1,6 @@
-# Facturator Usage Examples
+# Billctl Usage Examples
 
-This directory contains practical examples of how to use the Facturator CLI tool for various billing scenarios.
+This directory contains practical examples of how to use the Billctl CLI tool for various billing scenarios.
 
 ## 📚 Basic Usage Examples
 
@@ -8,15 +8,15 @@ This directory contains practical examples of how to use the Facturator CLI tool
 
 ```bash
 # Calculate billing for specific hours
-./facturator -h 40
+./billctl -h 40
 # Output: 40 hours × $13.75 = $550.00
 
 # Calculate billing for days
-./facturator -d 10
+./billctl -d 10
 # Output: 10 days × 8 hours × $13.75 = $1,100.00
 
 # Calculate billing for weeks
-./facturator -s 3
+./billctl -s 3
 # Output: 3 weeks × 40 hours × $13.75 = $1,650.00
 ```
 
@@ -24,14 +24,14 @@ This directory contains practical examples of how to use the Facturator CLI tool
 
 ```bash
 # Current year months
-./facturator -m 01    # January (31 days)
-./facturator -m 02    # February (28/29 days)
-./facturator -m 04    # April (30 days)
+./billctl -m 01    # January (31 days)
+./billctl -m 02    # February (28/29 days)
+./billctl -m 04    # April (30 days)
 
 # Specific year months
-./facturator -m 2024-01   # January 2024 (31 days)
-./facturator -m 2024-02   # February 2024 (29 days - leap year)
-./facturator -m 2023-02   # February 2023 (28 days - not leap year)
+./billctl -m 2024-01   # January 2024 (31 days)
+./billctl -m 2024-02   # February 2024 (29 days - leap year)
+./billctl -m 2023-02   # February 2023 (28 days - not leap year)
 ```
 
 ## 🔥 Advanced Combinations
@@ -40,15 +40,15 @@ This directory contains practical examples of how to use the Facturator CLI tool
 
 ```bash
 # Month + additional days
-./facturator -m 01 -d 5
+./billctl -m 01 -d 5
 # January (248 hours) + 5 days (40 hours) = 288 hours
 
 # Month + weeks + days
-./facturator -m 2024-02 -s 1 -d 3
+./billctl -m 2024-02 -s 1 -d 3
 # February 2024 (232 hours) + 1 week (40 hours) + 3 days (24 hours) = 296 hours
 
 # Full combination
-./facturator -m 01 -s 2 -d 3 -h 4
+./billctl -m 01 -s 2 -d 3 -h 4
 # January (248h) + 2 weeks (80h) + 3 days (24h) + 4 hours = 356 hours
 ```
 
@@ -56,11 +56,11 @@ This directory contains practical examples of how to use the Facturator CLI tool
 
 ```bash
 # Calculate for multiple months
-./facturator -m 2024-01 -m 2024-02
+./billctl -m 2024-01 -m 2024-02
 # January 2024 (248h) + February 2024 (232h) = 480 hours
 
 # Quarter calculation
-./facturator -m 2024-01 -m 2024-02 -m 2024-03
+./billctl -m 2024-01 -m 2024-02 -m 2024-03
 # Q1 2024: 248h + 232h + 248h = 728 hours
 ```
 
@@ -70,15 +70,15 @@ This directory contains practical examples of how to use the Facturator CLI tool
 
 ```bash
 # Euros
-./facturator -d 15 --currency EUR
+./billctl -d 15 --currency EUR
 # Output: 15 days × 8 hours × €13.75 = €1,650.00
 
 # US Dollars
-./facturator -m 03 --currency USD
+./billctl -m 03 --currency USD
 # Output: March (248 hours) × $13.75 = $3,410.00
 
 # Argentine Pesos
-./facturator -s 4 --currency ARS
+./billctl -s 4 --currency ARS
 # Output: 4 weeks × 40 hours × ARS 13.75 = ARS 2,200.00
 ```
 
@@ -86,10 +86,10 @@ This directory contains practical examples of how to use the Facturator CLI tool
 
 ```bash
 # Show rates in EUR
-./facturator --rates --currency EUR
+./billctl --rates --currency EUR
 
 # Show rates in USD
-./facturator --rates --currency USD
+./billctl --rates --currency USD
 ```
 
 ## 🏢 Real-World Scenarios
@@ -98,11 +98,11 @@ This directory contains practical examples of how to use the Facturator CLI tool
 
 ```bash
 # Project lasted 1.5 months with extra work
-./facturator -m 2024-01 -d 15 -h 20
+./billctl -m 2024-01 -d 15 -h 20
 # January (248h) + 15 days (120h) + 20 hours = 388 hours
 
 # Part-time month with additional weekend work
-./facturator -m 02 -d 8
+./billctl -m 02 -d 8
 # February (224h) + 8 weekend days (64h) = 288 hours
 ```
 
@@ -110,11 +110,11 @@ This directory contains practical examples of how to use the Facturator CLI tool
 
 ```bash
 # Monthly retainer + 1 week of extra work
-./facturator -m 2024-03 -s 1
+./billctl -m 2024-03 -s 1
 # March 2024 (248h) + 1 week (40h) = 288 hours
 
 # Monthly retainer + specific additional hours
-./facturator -m 04 -h 32
+./billctl -m 04 -h 32
 # April (240h) + 32 additional hours = 272 hours
 ```
 
@@ -122,11 +122,11 @@ This directory contains practical examples of how to use the Facturator CLI tool
 
 ```bash
 # Original month + 2-week extension
-./facturator -m 2024-01 -s 2
+./billctl -m 2024-01 -s 2
 # January 2024 (248h) + 2 weeks (80h) = 328 hours
 
 # Multi-month contract with modifications
-./facturator -m 2024-01 -m 2024-02 -d 10 -h 16
+./billctl -m 2024-01 -m 2024-02 -d 10 -h 16
 # Jan (248h) + Feb (232h) + 10 days (80h) + 16h = 576 hours
 ```
 
@@ -136,15 +136,15 @@ This directory contains practical examples of how to use the Facturator CLI tool
 
 ```bash
 # 2 weeks of work
-./facturator -s 2
+./billctl -s 2
 # 2 × 40 hours = 80 hours = $1,100.00
 
 # 3.5 weeks (3 weeks + 2 days)
-./facturator -s 3 -d 2
+./billctl -s 3 -d 2
 # 3 weeks (120h) + 2 days (16h) = 136 hours = $1,870.00
 
 # Part-time week (3 days)
-./facturator -d 3
+./billctl -d 3
 # 3 days × 8 hours = 24 hours = $330.00
 ```
 
@@ -152,19 +152,19 @@ This directory contains practical examples of how to use the Facturator CLI tool
 
 ```bash
 # Standard month
-./facturator -m 01
+./billctl -m 01
 # January: 31 days × 8 hours = 248 hours = $3,410.00
 
 # Short month
-./facturator -m 04
+./billctl -m 04
 # April: 30 days × 8 hours = 240 hours = $3,300.00
 
 # February (leap year)
-./facturator -m 2024-02
+./billctl -m 2024-02
 # February 2024: 29 days × 8 hours = 232 hours = $3,190.00
 
 # February (non-leap year)
-./facturator -m 2023-02
+./billctl -m 2023-02
 # February 2023: 28 days × 8 hours = 224 hours = $3,080.00
 ```
 
@@ -174,11 +174,11 @@ This directory contains practical examples of how to use the Facturator CLI tool
 
 ```bash
 # Weekend emergency work (16 hours)
-./facturator -h 16
+./billctl -h 16
 # 16 hours × $13.75 = $220.00
 
 # Rush project (2 days extra work)
-./facturator -d 2
+./billctl -d 2
 # 2 days × 8 hours = 16 hours = $220.00
 ```
 
@@ -186,15 +186,15 @@ This directory contains practical examples of how to use the Facturator CLI tool
 
 ```bash
 # First half of month (15 days)
-./facturator -d 15
+./billctl -d 15
 # 15 days × 8 hours = 120 hours = $1,650.00
 
 # Three weeks of a month
-./facturator -s 3
+./billctl -s 3
 # 3 weeks × 40 hours = 120 hours = $1,650.00
 
 # One week + 3 days
-./facturator -s 1 -d 3
+./billctl -s 1 -d 3
 # 1 week (40h) + 3 days (24h) = 64 hours = $880.00
 ```
 
@@ -202,11 +202,11 @@ This directory contains practical examples of how to use the Facturator CLI tool
 
 ```bash
 # Regular month + 20 hours overtime
-./facturator -m 01 -h 20
+./billctl -m 01 -h 20
 # January (248h) + 20 hours = 268 hours = $3,685.00
 
 # Half month + weekend work
-./facturator -d 15 -h 16
+./billctl -d 15 -h 16
 # 15 days (120h) + 16 hours = 136 hours = $1,870.00
 ```
 
@@ -215,7 +215,7 @@ This directory contains practical examples of how to use the Facturator CLI tool
 ### Sample Output for Complex Calculation
 
 ```bash
-$ ./facturator -m 2024-01 -s 1 -d 3 -h 5 --currency EUR
+$ ./billctl -m 2024-01 -s 1 -d 3 -h 5 --currency EUR
 
 === CÁLCULO DE FACTURACIÓN ===
 
@@ -234,7 +234,7 @@ RESUMEN:
 ### Rate Table Output
 
 ```bash
-$ ./facturator --rates --currency USD
+$ ./billctl --rates --currency USD
 
 === TABLA DE TARIFAS FIMAL ===
 
@@ -258,19 +258,19 @@ Tarifas calculadas:
 
 ```bash
 # Invalid month
-./facturator -m 13
+./billctl -m 13
 # Error: invalid month: 13 (must be 1-12)
 
 # Invalid format
-./facturator -m january
+./billctl -m january
 # Error: invalid month format: january (use MM or YYYY-MM)
 
 # Negative values
-./facturator -h -10
+./billctl -h -10
 # Error: hours cannot be negative: -10
 
 # Missing arguments
-./facturator -m
+./billctl -m
 # Error: flag needs an argument: -m
 ```
 
@@ -279,27 +279,27 @@ Tarifas calculadas:
 ### 1. Always Verify Leap Years
 ```bash
 # Check February in different years
-./facturator -m 2024-02  # 29 days (leap year)
-./facturator -m 2023-02  # 28 days (regular year)
+./billctl -m 2024-02  # 29 days (leap year)
+./billctl -m 2023-02  # 28 days (regular year)
 ```
 
 ### 2. Use Specific Years for Historical Billing
 ```bash
 # For invoices from previous years
-./facturator -m 2023-01 -m 2023-02 -m 2023-03
+./billctl -m 2023-01 -m 2023-02 -m 2023-03
 ```
 
 ### 3. Combine Rate Display with Calculations
 ```bash
 # Show rates first, then calculate
-./facturator --rates --currency EUR
-./facturator -m 01 -d 5 --currency EUR
+./billctl --rates --currency EUR
+./billctl -m 01 -d 5 --currency EUR
 ```
 
 ### 4. Document Complex Calculations
 ```bash
 # For complex projects, document the breakdown
-./facturator -m 2024-01 -m 2024-02 -d 10 -h 20
+./billctl -m 2024-01 -m 2024-02 -d 10 -h 20
 # Project: 2 months + 10 days revision + 20 hours meetings
 ```
 
@@ -310,10 +310,10 @@ Tarifas calculadas:
 # Create a script for common calculations
 #!/bin/bash
 echo "Q1 2024 billing:"
-./facturator -m 2024-01 -m 2024-02 -m 2024-03
+./billctl -m 2024-01 -m 2024-02 -m 2024-03
 
 echo "Q2 2024 billing:"
-./facturator -m 2024-04 -m 2024-05 -m 2024-06
+./billctl -m 2024-04 -m 2024-05 -m 2024-06
 ```
 
 ### Monthly Reports
@@ -321,7 +321,7 @@ echo "Q2 2024 billing:"
 # Generate monthly reports
 for month in {01..12}; do
     echo "Month $month:"
-    ./facturator -m 2024-$month
+    ./billctl -m 2024-$month
 done
 ```
 

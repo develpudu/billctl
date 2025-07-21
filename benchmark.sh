@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Performance benchmark script for facturator
+# Performance benchmark script for billctl
 # Compares bash vs Go implementation performance
 # Author: DevelPudu (https://github.com/develpudu)
 # Date: 2025-07-17
@@ -17,7 +17,7 @@ NC='\033[0m' # No Color
 # Configuration
 ITERATIONS=100
 BASH_SCRIPT="./calcular_facturacion.sh"
-GO_BINARY="./facturator"
+GO_BINARY="./billctl"
 RESULTS_FILE="benchmark_results.txt"
 
 # Test cases
@@ -276,7 +276,7 @@ generate_report() {
 
 # Main execution
 main() {
-    echo -e "${YELLOW}=== FACTURATOR PERFORMANCE BENCHMARK ===${NC}"
+    echo -e "${YELLOW}=== BILLCTL PERFORMANCE BENCHMARK ===${NC}"
     echo ""
 
     # Initialize results file

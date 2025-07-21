@@ -1,9 +1,9 @@
-# Facturator Docker ignore file
+# Billctl Docker ignore file
 # Exclude unnecessary files from Docker build context
 
 # Binaries and build artifacts
-facturator
-facturator-*
+billctl
+billctl-*
 *.exe
 build/
 dist/

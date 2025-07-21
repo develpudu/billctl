@@ -1,4 +1,4 @@
-# Facturator - FIMAL Billing Calculator
+# Billctl - Professional Billing Calculator
 # Multi-stage Docker build for optimal image size
 
 # Build stage
@@ -26,14 +26,14 @@ ARG GIT_COMMIT
 
 # Set build time if not provided
 RUN if [ -z "$BUILD_TIME" ]; then \
-    BUILD_TIME=$(date -u +%Y-%m-%d_%H:%M:%S); \
-    fi
+	BUILD_TIME=$(date -u +%Y-%m-%d_%H:%M:%S); \
+	fi
 
 # Build the binary with optimizations
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
-    -ldflags="-w -s -X main.Version=${VERSION} -X main.BuildTime=${BUILD_TIME} -X main.GitCommit=${GIT_COMMIT}" \
-    -a -installsuffix cgo \
-    -o facturator .
+	-ldflags="-w -s -X main.Version=${VERSION} -X main.BuildTime=${BUILD_TIME} -X main.GitCommit=${GIT_COMMIT}" \
+	-a -installsuffix cgo \
+	-o billctl .
 
 # Runtime stage
 FROM alpine:3.18
@@ -43,13 +43,13 @@ RUN apk --no-cache add ca-certificates tzdata
 
 # Create non-root user
 RUN addgroup -g 1001 -S appgroup && \
-    adduser -u 1001 -S appuser -G appgroup
+	adduser -u 1001 -S appuser -G appgroup
 
 # Set working directory
 WORKDIR /app
 
 # Copy binary from builder stage
-COPY --from=builder /app/facturator .
+COPY --from=builder /app/billctl .
 
 # Copy documentation and examples (optional)
 COPY --from=builder /app/README.md ./
@@ -57,7 +57,7 @@ COPY --from=builder /app/examples ./examples/
 
 # Create directory for output files
 RUN mkdir -p /app/output && \
-    chown -R appuser:appgroup /app
+	chown -R appuser:appgroup /app
 
 # Switch to non-root user
 USER appuser
@@ -66,21 +66,21 @@ USER appuser
 ENV PATH="/app:${PATH}"
 
 # Add labels for metadata
-LABEL org.opencontainers.image.title="Facturator" \
-    org.opencontainers.image.description="FIMAL Billing Calculator - High-performance CLI tool for calculating billing amounts" \
-    org.opencontainers.image.version="${VERSION}" \
-    org.opencontainers.image.source="https://github.com/develpudu/facturator" \
-    org.opencontainers.image.documentation="https://github.com/develpudu/facturator/blob/main/README.md" \
-    org.opencontainers.image.licenses="MIT" \
-    org.opencontainers.image.created="2025-07-17" \
-    maintainer="DevelPudu (https://github.com/develpudu)"
+LABEL org.opencontainers.image.title="Billctl" \
+	org.opencontainers.image.description="Professional Billing Calculator - High-performance CLI tool for calculating billing amounts" \
+	org.opencontainers.image.version="${VERSION}" \
+	org.opencontainers.image.source="https://github.com/develpudu/billctl" \
+	org.opencontainers.image.documentation="https://github.com/develpudu/billctl/blob/main/README.md" \
+	org.opencontainers.image.licenses="MIT" \
+	org.opencontainers.image.created="2025-07-17" \
+	maintainer="DevelPudu (https://github.com/develpudu)"
 
 # Health check (simple version check)
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD ./facturator --version || exit 1
+	CMD ./billctl --version || exit 1
 
 # Default command
-ENTRYPOINT ["./facturator"]
+ENTRYPOINT ["./billctl"]
 
 # Default arguments (show help)
 CMD ["--help"]
@@ -92,7 +92,7 @@ CMD ["--help"]
 VOLUME ["/app/output"]
 
 # Example usage:
-# docker build -t facturator:latest .
-# docker run --rm facturator:latest --rates
-# docker run --rm facturator:latest -m 2024-01 --currency EUR
-# docker run --rm -v $(pwd)/output:/app/output facturator:latest -m 01 > output/billing.txt
+# docker build -t billctl:latest .
+# docker run --rm billctl:latest --rates
+# docker run --rm billctl:latest -m 2024-01 --currency EUR
+# docker run --rm -v $(pwd)/output:/app/output billctl:latest -m 01 > output/billing.txt

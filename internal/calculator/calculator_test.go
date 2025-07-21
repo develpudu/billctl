@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"facturator/internal/config"
+	"billctl/internal/config"
 )
 
 func TestIsLeapYear(t *testing.T) {

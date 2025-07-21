@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"facturator/internal/calculator"
-	"facturator/internal/config"
+	"billctl/internal/calculator"
+	"billctl/internal/config"
 
 	"github.com/spf13/cobra"
 )
@@ -29,23 +29,23 @@ var (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "facturator",
-	Short: "FIMAL Billing Calculator",
-	Long: `=== CALCULADORA DE FACTURACIÓN FIMAL ===
+	Use:   "billctl",
+	Short: "Professional Billing Calculator",
+	Long: `=== BILLCTL - BILLING CALCULATOR ===
 
 A CLI tool for calculating billing amounts based on hours, days, weeks, and months.
 You can combine multiple time periods for complex calculations.
 
 Examples:
-  facturator -h 120                    # Calculate for 120 hours
-  facturator -d 15                     # Calculate for 15 days
-  facturator -s 2                      # Calculate for 2 weeks
-  facturator -m 02                     # February of current year
-  facturator -m 2024-02                # February 2024 (28 days)
-  facturator -m 01 -d 5                # January + 5 additional days
-  facturator -s 2 -d 3 -h 4            # 2 weeks + 3 days + 4 hours
-  facturator -d 15 --currency EUR      # 15 days in euros
-  facturator -m 2024-01 -m 2024-02     # Multiple months
+  billctl -h 120                       # Calculate for 120 hours
+  billctl -d 15                        # Calculate for 15 days
+  billctl -s 2                         # Calculate for 2 weeks
+  billctl -m 02                        # February of current year
+  billctl -m 2024-02                   # February 2024 (28 days)
+  billctl -m 01 -d 5                   # January + 5 additional days
+  billctl -s 2 -d 3 -h 4               # 2 weeks + 3 days + 4 hours
+  billctl -d 15 --currency EUR         # 15 days in euros
+  billctl -m 2024-01 -m 2024-02        # Multiple months
 
 Month formats:
   MM                                   # Month of current year (e.g., 02 for February)
@@ -73,7 +73,7 @@ Supported operations:
 
 		// If --version flag is set, show version and exit
 		if showVersion {
-			fmt.Printf("Facturator v%s\n", Version)
+			fmt.Printf("Billctl v%s\n", Version)
 			fmt.Printf("Build Time: %s\n", BuildTime)
 			fmt.Printf("Git Commit: %s\n", GitCommit)
 			fmt.Printf("Go Version: %s\n", "go1.21+")

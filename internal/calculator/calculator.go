@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"facturator/internal/config"
+	"billctl/internal/config"
 )
 
 // MonthInfo holds month calculation details

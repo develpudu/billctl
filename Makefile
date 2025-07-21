@@ -2,7 +2,7 @@
 # Makefile for build automation
 
 # Variables
-BINARY_NAME=facturator
+BINARY_NAME=billctl
 BASH_SCRIPT=calcular_facturacion.sh
 VERSION?=1.0.0
 BUILD_TIME=$(shell date +%Y-%m-%d_%H:%M:%S)
@@ -279,9 +279,9 @@ ci-build: deps test build cross-compile ## Run CI build
 docker-build: ## Build Docker image
 	@if [ -f "Dockerfile" ]; then \
 		echo "$(BLUE)Building Docker image...$(NC)"; \
-		docker build -t facturator:$(VERSION) .; \
-		docker tag facturator:$(VERSION) facturator:latest; \
-		echo "$(GREEN)Docker image built: facturator:$(VERSION)$(NC)"; \
+		docker build -t billctl:$(VERSION) .; \
+		docker tag billctl:$(VERSION) billctl:latest; \
+		echo "$(GREEN)Docker image built: billctl:$(VERSION)$(NC)"; \
 	else \
 		echo "$(YELLOW)Dockerfile not found$(NC)"; \
 	fi

@@ -1,4 +1,4 @@
-# TODO - Facturator Project Tasks
+# TODO - Billctl Project Tasks
 
 ## ✅ Completed Tasks
 
@@ -59,6 +59,14 @@
   - HTML invoice templates
   - Email integration for automatic sending
   - Invoice numbering and tracking
+
+- [ ] **Multi-Language Output Support**
+  - Add internationalization (i18n) support for output messages
+  - Current output is in Spanish (LATAM)
+  - Add English (US) as default language for next minor version
+  - Support for configurable language selection via flag (--lang)
+  - Translate all CLI output, error messages, and help text
+  - Support for additional languages (French, Portuguese, etc.)
 
 ### Medium Priority
 

@@ -1,4 +1,4 @@
-module facturator
+module billctl
 
 go 1.21
 

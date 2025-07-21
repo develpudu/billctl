@@ -1,4 +1,4 @@
-# Facturator - FIMAL Billing Calculator
+# Billctl - Professional Billing Calculator
 
 A high-performance CLI tool for calculating billing amounts based on hours, days, weeks, and months. 
 
@@ -14,11 +14,11 @@ A high-performance CLI tool for calculating billing amounts based on hours, days
 
 ```bash
 # Clone the repository
-git clone https://github.com/develpudu/facturator.git
-cd facturator
+git clone https://github.com/develpudu/billctl.git
+cd billctl
 
 # Build the binary
-go build -o facturator
+go build -o billctl
 
 # Optional: Install globally
 go install
@@ -32,39 +32,39 @@ go install
 
 ```bash
 # Calculate for 120 hours
-./facturator -h 120
+./billctl -h 120
 
 # Calculate for 15 days
-./facturator -d 15
+./billctl -d 15
 
 # Calculate for 2 weeks
-./facturator -s 2
+./billctl -s 2
 
 # Calculate for February (current year)
-./facturator -m 02
+./billctl -m 02
 
 # Calculate for January 2024 (31 days)
-./facturator -m 2024-01
+./billctl -m 2024-01
 
 # Calculate for February 2024 (29 days - leap year)
-./facturator -m 2024-02
+./billctl -m 2024-02
 ```
 
 ### Advanced Examples
 
 ```bash
 # Combine multiple time periods
-./facturator -m 01 -d 5 -h 8           # January + 5 days + 8 hours
-./facturator -s 2 -d 3 -h 4            # 2 weeks + 3 days + 4 hours
-./facturator -m 2024-01 -m 2024-02     # Multiple months
+./billctl -m 01 -d 5 -h 8           # January + 5 days + 8 hours
+./billctl -s 2 -d 3 -h 4            # 2 weeks + 3 days + 4 hours
+./billctl -m 2024-01 -m 2024-02     # Multiple months
 
 # Use different currencies
-./facturator -d 15 --currency EUR      # 15 days in euros
-./facturator -m 03 --currency USD      # March in US dollars
+./billctl -d 15 --currency EUR      # 15 days in euros
+./billctl -m 03 --currency USD      # March in US dollars
 
 # Show rate table
-./facturator --rates                   # Display all rates
-./facturator --rates --currency EUR    # Rates in euros
+./billctl --rates                   # Display all rates
+./billctl --rates --currency EUR    # Rates in euros
 ```
 
 ### Command Reference
@@ -125,7 +125,7 @@ go test -bench=. ./...
 
 ### January 2024 (31 days)
 ```bash
-$ ./facturator -m 2024-01
+$ ./billctl -m 2024-01
 
 === CÁLCULO DE FACTURACIÓN ===
 
@@ -140,7 +140,7 @@ RESUMEN:
 
 ### Combined Calculation
 ```bash
-$ ./facturator -m 01 -s 1 -d 3 -h 5
+$ ./billctl -m 01 -s 1 -d 3 -h 5
 
 === CÁLCULO DE FACTURACIÓN ===
 
@@ -163,7 +163,7 @@ RESUMEN:
 go mod download
 
 # Build
-go build -o facturator
+go build -o billctl
 
 # Cross-compile
 make cross-compile

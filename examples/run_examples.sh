@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Facturator Examples Runner
-# Demonstrates various usage scenarios for the FIMAL Billing Calculator
+# Billctl Examples Runner
+# Demonstrates various usage scenarios for the Professional Billing Calculator
 # Run this script to see practical examples in action
 
 set -e
@@ -17,7 +17,7 @@ WHITE='\033[1;37m'
 NC='\033[0m' # No Color
 
 # Configuration
-FACTURATOR_GO="../facturator"
+FACTURATOR_GO="../billctl"
 FACTURATOR_BASH="../calcular_facturacion.sh"
 PAUSE_BETWEEN_EXAMPLES=2
 
@@ -49,7 +49,7 @@ run_command() {
         return
     fi
 
-    if [[ $cmd == *"facturator"* ]] && [[ ! -f "$FACTURATOR_GO" ]]; then
+    if [[ $cmd == *"billctl"* ]] && [[ ! -f "$FACTURATOR_GO" ]]; then
         echo -e "${RED}Go binary not found at $FACTURATOR_GO${NC}"
         echo -e "${YELLOW}Run 'make build' or 'go build' first${NC}"
         return
@@ -69,7 +69,7 @@ check_prerequisites() {
     if [[ ! -f "$FACTURATOR_GO" ]]; then
         echo -e "${YELLOW}Go binary not found. Attempting to build...${NC}"
         if command -v go &> /dev/null; then
-            (cd .. && go build -o facturator)
+            (cd .. && go build -o billctl)
             if [[ -f "$FACTURATOR_GO" ]]; then
                 echo -e "${GREEN}Successfully built Go binary${NC}"
             else
@@ -473,8 +473,8 @@ main() {
 }
 
 # Welcome message
-echo -e "${WHITE}🧮 Facturator Examples Runner${NC}"
-echo -e "${CYAN}Demonstrating the FIMAL Billing Calculator${NC}"
+echo -e "${WHITE}🧮 Billctl Examples Runner${NC}"
+echo -e "${CYAN}Demonstrating the Professional Billing Calculator${NC}"
 echo -e "${YELLOW}For help, run: $0 --help${NC}"
 
 # Run main function with all arguments
