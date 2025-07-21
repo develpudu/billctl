@@ -16,7 +16,7 @@
 
 📊 **Flexible time units** - hours, days, weeks, and specific months
 
-Perfect for developers, freelancers, contractors, and consultants who need accurate time-based billing calculations.
+_Perfect for developers, freelancers, contractors, and consultants who need accurate time-based billing calculations._
 
 ## 📦 Installation
 
